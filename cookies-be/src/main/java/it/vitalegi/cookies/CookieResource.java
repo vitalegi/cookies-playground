@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.UUID;
 
-@CrossOrigin(origins = {"http://localhost:9000", "https://fe.domain1.internal", "https://domain1.internal"})
+@CrossOrigin(origins = {"https://fe.home.company.eu", "https://home.company.eu", "https://home.company2.eu"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/cookies")
 public class CookieResource {
@@ -24,7 +24,7 @@ public class CookieResource {
         }
         var newValue = UUID.randomUUID().toString();
         log.info("Set cookie {}={}", "cookie1", newValue);
-        var newCookie = "cookie1=" + newValue + "; Domain=.domain1.internal; SameSite=None; Secure; HttpOnly; Path=/; Max-Age=1600";
+        var newCookie = "cookie1=" + newValue + "; Domain=.company.eu; SameSite=None; Secure; HttpOnly; Path=/; Max-Age=1600";
         response.addHeader(HttpHeaders.SET_COOKIE, newCookie);
         return cookies(newValue);
     }

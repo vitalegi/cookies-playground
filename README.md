@@ -31,7 +31,7 @@ State or Province Name (full name) [Some-State]:
 Locality Name (eg, city) []:
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:
 Organizational Unit Name (eg, section) []:
-Common Name (e.g. server FQDN or YOUR name) []:fe.domain1.internal
+Common Name (e.g. server FQDN or YOUR name) []:fe.company.eu
 Email Address []:
 ```
 
@@ -40,13 +40,15 @@ Email Address []:
 Update `C:\Windows\System32\drivers\etc\hosts` with
 
 ```
-127.0.0.1	api.domain1.internal
-127.0.0.1	fe.domain1.internal
+127.0.0.1	home.company.eu
+127.0.0.1	home.company2.eu
+127.0.0.1	fe.home.company.eu
+127.0.0.1	api.home.company.eu
 ```
 
 ### Disable SSL validation
 
-In the browser of your choice, open the 2 domains and allow traffic.
+In the browser of your choice, open each domain and allow traffic.
 
 ### Nginx setup
 
@@ -56,10 +58,9 @@ In the browser of your choice, open the 2 domains and allow traffic.
 ```
 server {
     listen 443 ssl http2;
+    server_name home.company.eu;
     ssl_certificate     C:/a/projects/vitalegi/cookies-playground/nginx-selfsigned.crt;
     ssl_certificate_key C:/a/projects/vitalegi/cookies-playground/nginx-selfsigned.key;
-    server_name fe.domain1.internal;
-
     location / {
         root   html;
         index  index.html index.htm;
@@ -68,7 +69,29 @@ server {
 
 server {
     listen 443 ssl http2;
-    server_name api.domain1.internal;
+    server_name home.company2.eu;
+    ssl_certificate     C:/a/projects/vitalegi/cookies-playground/nginx-selfsigned.crt;
+    ssl_certificate_key C:/a/projects/vitalegi/cookies-playground/nginx-selfsigned.key;
+    location / {
+        root   html;
+        index  index.html index.htm;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name fe.home.company.eu;
+    ssl_certificate     C:/a/projects/vitalegi/cookies-playground/nginx-selfsigned.crt;
+    ssl_certificate_key C:/a/projects/vitalegi/cookies-playground/nginx-selfsigned.key;
+    location / {
+        root   html;
+        index  index.html index.htm;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name api.home.company.eu;
     ssl_certificate     C:/a/projects/vitalegi/cookies-playground/nginx-selfsigned.crt;
     ssl_certificate_key C:/a/projects/vitalegi/cookies-playground/nginx-selfsigned.key;
 
