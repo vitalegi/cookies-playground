@@ -6,7 +6,21 @@ Playground in order to locally test cookies behaviour in multi-domain use cases.
 
 - `nginx-1.25.2\html\index.html` frontend page to test cookie on several domains
 - `cookies-be` java server to create cookie on a specific domain
-- `nginx-1.25.2` the webserver that manages SSL + domains routing 
+- `nginx-1.25.2` the webserver that manages SSL + domains routing
+
+
+## Quick access
+
+Once env is up-and-running, you'll find resources here:
+
+| URL                                                                      | Description                                                                  |
+| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| [api.home.company.eu](https://api.home.company.eu/cookies/test1)         | API endpoint                                                                 |
+| [home.company.eu/](https://home.company.eu/index.html)                   | sub-domain, index.html                                                       |
+| [home.company.eu/index2.html](https://home.company.eu/index2.html)       | sub-domain, index2.html. Includes also home.company2.eu domain as iframe     |
+| [fe.home.company.eu/](https://fe.home.company.eu/index.html)             | sub-sub-domain, index.html                                                   |
+| [fe.home.company.eu/index2.html](https://fe.home.company.eu/index2.html) | sub-sub-domain, index2.html. Includes also home.company2.eu domain as iframe |
+| [home.company2.eu/](https://home.company2.eu/index.html)                 | cross-domain, index.html                                                     |
 
 ## Setup local env
 
@@ -61,6 +75,7 @@ In the browser of your choice, open each domain and allow traffic.
 <http://nginx.org/en/download.html>
 
 `nginx.conf`'s server section
+
 ```
 server {
     listen 443 ssl http2;
@@ -105,4 +120,11 @@ server {
         proxy_pass http://localhost:8080;
     }
 }
+```
+
+### Nginx run
+
+```bash
+cd ./nginx-1.25.2
+./nginx.exe
 ```
