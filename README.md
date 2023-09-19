@@ -2,6 +2,12 @@
 
 Playground in order to locally test cookies behaviour in multi-domain use cases.
 
+## Repository structure
+
+- `nginx-1.25.2\html\index.html` frontend page to test cookie on several domains
+- `cookies-be` java server to create cookie on a specific domain
+- `nginx-1.25.2` the webserver that manages SSL + domains routing 
+
 ## Setup local env
 
 ### Generate SSL certificates
