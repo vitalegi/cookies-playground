@@ -42,8 +42,8 @@ Update `C:\Windows\System32\drivers\etc\hosts` with
 keytool -genkeypair -alias cookies -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore cookies.p12 -validity 3650
 ```
 
-Disable SSL validation for `domain1.internal`.
+Disable SSL validation for `api.domain1.internal`.
 
 ## Usage
 
-<https://domain1.internal:8080/cookies/test1>
+<https://api.domain1.internal:8080/cookies/test1>
