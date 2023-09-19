@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cookie FE 1 - tower</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    Open me from <a href="https://home.company.eu/tower0.html">https://home.company.eu/tower0.html</a>!
+    <div id="cookie">home.company.eu: </div>
+    <iframe src="https://home.company.eu/tower1.html" width="800" height="500"></iframe>
+    <script type="text/javascript">
+      fetch("https://api.home.company.eu/cookies/test1", {
+        method: "GET",
+        credentials: "include",
+      }).then((v) =>
+        v.json().then((payload) => {
+          const div = document.createElement("div");
+          div.appendChild(document.createTextNode(JSON.stringify(payload)));
+          document.getElementById("cookie").appendChild(div);
+        })
+      );
+    </script>
+  </body>
+</html>

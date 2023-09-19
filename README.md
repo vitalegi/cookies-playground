@@ -8,6 +8,15 @@ Playground in order to locally test cookies behaviour in multi-domain use cases.
 - `cookies-be` java server to create cookie on a specific domain
 - `nginx-1.25.2` the webserver that manages SSL + domains routing
 
+## Tests
+
+### Chrome
+
+<https://home.company.eu/tower0.html>
+
+The UUID shown in each iframe is the value of the cookie. If the value is different, the cookie is not propagated correctly.
+
+![tower](tower.png)
 
 ## Quick access
 
