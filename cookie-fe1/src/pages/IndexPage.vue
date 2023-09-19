@@ -45,7 +45,7 @@ const meta = ref<Meta>({
 
 const cookie = ref<string>('');
 
-fetch('https://api.domain1.internal:8080/cookies/test1').then((v) =>
+fetch('https://api.domain1.internal/cookies/test1').then((v) =>
   v.json().then((payload) => (cookie.value = payload))
 );
 </script>

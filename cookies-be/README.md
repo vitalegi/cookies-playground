@@ -24,26 +24,6 @@ mvn clean package
 mvn spring-boot:run
 ```
 
-### Setup
-
-#### Configure hosts file
-
-Update `C:\Windows\System32\drivers\etc\hosts` with
-
-```
-127.0.0.1	domain1.internal
-```
-
-#### Setup TLS - self-signed
-
-<https://www.baeldung.com/spring-boot-https-self-signed-certificate>
-
-```bash
-keytool -genkeypair -alias cookies -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore cookies.p12 -validity 3650
-```
-
-Disable SSL validation for `api.domain1.internal`.
-
 ## Usage
 
 <https://api.domain1.internal:8080/cookies/test1>
