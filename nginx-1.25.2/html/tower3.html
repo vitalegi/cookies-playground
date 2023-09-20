@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <div id="cookie">home.company.eu: </div>
+    <div id="cookie">home.company.eu:</div>
     <script type="text/javascript">
-      fetch("https://api.home.company.eu/cookies/test1", {
+      fetch("https://api.home.company.eu/cookies/tower3", {
         method: "GET",
         credentials: "include",
       }).then((v) =>
@@ -15,6 +15,30 @@
           const div = document.createElement("div");
           div.appendChild(document.createTextNode(JSON.stringify(payload)));
           document.getElementById("cookie").appendChild(div);
+
+          try {
+            const div2 = document.createElement("div");
+            div2.appendChild(
+              document.createTextNode(
+                `localStorage: ${localStorage.getItem("test1")}`
+              )
+            );
+            document.getElementById("cookie").appendChild(div2);
+          } catch (e) {
+            console.error(e);
+          }
+
+          try {
+            const div2 = document.createElement("div");
+            div2.appendChild(
+              document.createTextNode(
+                `sessionStorage: ${sessionStorage.getItem("test2")}`
+              )
+            );
+            document.getElementById("cookie").appendChild(div2);
+          } catch (e) {
+            console.error(e);
+          }
         })
       );
     </script>

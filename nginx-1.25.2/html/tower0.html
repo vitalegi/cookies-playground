@@ -5,18 +5,52 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    Open me from <a href="https://home.company.eu/tower0.html">https://home.company.eu/tower0.html</a>!
-    <div id="cookie">home.company.eu: </div>
-    <iframe src="https://home.company.eu/tower1.html" width="800" height="500"></iframe>
+    Open me from
+    <a href="https://home.company.eu/tower0.html"
+      >https://home.company.eu/tower0.html</a
+    >!
+    <div id="cookie">home.company.eu:</div>
+    <iframe
+      src="https://home.company.eu/tower1.html"
+      width="800"
+      height="500"
+    ></iframe>
     <script type="text/javascript">
-      fetch("https://api.home.company.eu/cookies/test1", {
+      fetch("https://api.home.company.eu/cookies/tower0", {
         method: "GET",
         credentials: "include",
       }).then((v) =>
         v.json().then((payload) => {
+          localStorage.setItem("test1", JSON.stringify(payload));
+          sessionStorage.setItem("test2", JSON.stringify(payload));
+
           const div = document.createElement("div");
           div.appendChild(document.createTextNode(JSON.stringify(payload)));
           document.getElementById("cookie").appendChild(div);
+
+          try {
+            const div2 = document.createElement("div");
+            div2.appendChild(
+              document.createTextNode(
+                `localStorage: ${localStorage.getItem("test1")}`
+              )
+            );
+            document.getElementById("cookie").appendChild(div2);
+          } catch (e) {
+            console.error(e);
+          }
+
+          try {
+            const div2 = document.createElement("div");
+            div2.appendChild(
+              document.createTextNode(
+                `sessionStorage: ${sessionStorage.getItem("test2")}`
+              )
+            );
+            document.getElementById("cookie").appendChild(div2);
+          } catch (e) {
+            console.error(e);
+          }
         })
       );
     </script>
