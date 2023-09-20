@@ -7,6 +7,14 @@
   <body>
     <div id="cookie">home.company.eu:</div>
     <script type="text/javascript">
+      window.addEventListener("message", function (event) {
+        if (event.origin != "https://home.company.eu") {
+          console.error(`3 - Origin ${event.origin} not allowed`);
+          return;
+        }
+        console.log("3", event.data);
+        event.source.postMessage(`Message received: ${event.data}`, event.origin);
+      });
       fetch("https://api.home.company.eu/cookies/tower3", {
         method: "GET",
         credentials: "include",
@@ -25,7 +33,7 @@
             );
             document.getElementById("cookie").appendChild(div2);
           } catch (e) {
-            console.error(e);
+            console.error("3", e);
           }
 
           try {
@@ -37,7 +45,7 @@
             );
             document.getElementById("cookie").appendChild(div2);
           } catch (e) {
-            console.error(e);
+            console.error("3", e);
           }
         })
       );

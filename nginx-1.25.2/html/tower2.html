@@ -14,13 +14,14 @@
     <script type="text/javascript">
       window.addEventListener("message", function (event) {
         if (event.origin != "https://home.company.eu") {
-          console.error(`Origin ${event.origin} not allowed`);
+          console.error(`2 - Origin ${event.origin} not allowed`);
           return;
         }
-        console.log(event.data);
+        console.log("2", event.data);
         event.source.postMessage(`Message received: ${event.data}`, event.origin);
         // can message back using event.source.postMessage(...)
       });
+      window.parent.postMessage('I am alive', 'https://home.company.eu');
 
       fetch("https://api.home.company.eu/cookies/tower2", {
         method: "GET",
@@ -40,7 +41,7 @@
             );
             document.getElementById("cookie").appendChild(div2);
           } catch (e) {
-            console.error(e);
+            console.error("2", e);
           }
 
           try {
@@ -52,7 +53,7 @@
             );
             document.getElementById("cookie").appendChild(div2);
           } catch (e) {
-            console.error(e);
+            console.error("2", e);
           }
         })
       );

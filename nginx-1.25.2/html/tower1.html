@@ -15,10 +15,10 @@
     <script type="text/javascript">
       window.addEventListener("message", function (event) {
         if (event.origin != "https://home.company2.eu") {
-          console.error(`Origin ${event.origin} not allowed`);
+          console.error(`1 - Origin ${event.origin} not allowed`);
           return;
         }
-        console.log(event.data);
+        console.log(`1 - Received message from child: ${event.data}`);
       });
 
       fetch("https://api.home.company.eu/cookies/tower1", {
@@ -39,7 +39,7 @@
             );
             document.getElementById("cookie").appendChild(div2);
           } catch (e) {
-            console.error(e);
+            console.error("1", e);
           }
 
           try {
@@ -51,7 +51,7 @@
             );
             document.getElementById("cookie").appendChild(div2);
           } catch (e) {
-            console.error(e);
+            console.error("1", e);
           }
 
           setInterval(() => {
