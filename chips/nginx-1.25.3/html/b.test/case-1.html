@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Site B - case 1</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>Site B</h1>
+    <form id="myForm">
+      <div>
+        <input
+          type="radio"
+          id="option1"
+          name="new_cookie"
+          value="B1=123; Max-Age=3600; Path=/; Domain=b.test; Secure; SameSite=None"
+          checked
+        />
+        <label for="option1">
+          B1=123; Max-Age=3600; Path=/; Domain=b.test; Secure; SameSite=None
+        </label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="option2"
+          name="new_cookie"
+          value="B2=456; Max-Age=3600; Path=/"
+        />
+        <label for="option2"> B2=456; Max-Age=3600; Path=/ </label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="option1"
+          name="new_cookie"
+          value="B3=789; Max-Age=3600; Path=/; Domain=b.test; Secure; SameSite=None; Partitioned"
+          checked
+        />
+        <label for="option1">
+          B3=789; Max-Age=3600; Path=/; Domain=b.test; Secure; SameSite=None; Partitioned
+        </label>
+      </div>
+      <button type="submit">Add</button>
+    </form>
+    <div id="cookie">loading</div>
+    <iframe
+      src="https://child.b.test/case-1.html"
+      width="400"
+      height="300"
+    ></iframe>
+    <script type="text/javascript">
+      function refreshCookies() {
+        document.getElementById("cookie").textContent =
+          "Cookies: " + document.cookie;
+      }
+      refreshCookies();
+      setInterval(() => refreshCookies(), 100);
+
+      // form submit event
+      var form = document.getElementById("myForm");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var formData = new FormData(form);
+        var entries = Object.fromEntries(formData);
+        document.cookie = entries.new_cookie;
+        refreshCookies();
+      });
+    </script>
+  </body>
+</html>

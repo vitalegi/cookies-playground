@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Site C - case 1</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>Site C</h1>
+    <div id="cookie"></div>
+    <script type="text/javascript">
+      function refreshCookies() {
+        document.getElementById("cookie").textContent =
+          "Cookies: " + document.cookie;
+      }
+      refreshCookies();
+      setInterval(() => refreshCookies(), 100);
+    </script>
+  </body>
+</html>
